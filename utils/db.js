@@ -11,10 +11,17 @@ const getPost=()=>{
 };
 
 const savePost=(post)=>{
-    const currenntPost=getPost();
-    currenntPost.push(post);
+    const currentPost=getPost();
+    currentPost.push(post);
 
-    fs.writeFileSync(dataPath,JSON.stringify(currenntPost,null,2));
+    fs.writeFileSync(dataPath,JSON.stringify(currentPost,null,2));
+};
+
+const deletePost=(postId)=>{
+    const currentPost=getPost();
+    const updatePost=currentPost.filter(post=>post.id!==postId);
+    fs.writeFileSync(dataPath,JSON.stringify(updatePost,null,2));
+    
 };
 
 //get user functions 
@@ -30,4 +37,4 @@ const saveUser=(user)=>{
 
 };
 
-module.exports={getPost,savePost,getUser,saveUser}
+module.exports={getPost,savePost,getUser,saveUser,deletePost}

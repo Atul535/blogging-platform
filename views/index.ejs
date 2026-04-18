@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1 class="home-header">Welcome to my Blogging Platform!</h1>
+<p>This page was rendered using an EJS template.</p>
+<h2>All Posts</h2>
+<% if(posts.length===0){ %>
+    <p>No posts available</p>
+    <% } else { %>
+        <ul>
+            <% posts.forEach(post=> { %>
+                <li style="margin-bottom: 20px;"> <!-- Added some margin so they don't squish -->
+                    <strong>
+                        <%= post.title %>
+                    </strong> - <%= post.content %>
+                        <br>
+                        <% if (post.imageUrl) { %>
+                            <img src="<%= post.imageUrl %>" alt="Post Image" width="200"><br>
+                            <% } %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-</head>
+                                <!-- Only show the delete button if someone is logged in -->
+                                <% if (user) { %>
+                                    <form action="/delete/<%= post.id %>" method="POST" style="margin-top: 10px;">
+                                        <button type="submit"
+                                            style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete
+                                            Post</button>
+                                    </form>
+                                    <% } %>
+                </li>
+                <% }) %>
+        </ul>
 
-<body>
-    <h1>Welcome to my Blogging Platform!</h1>
-    <p>This page was rendered using an EJS template.</p>
-    <h2>All Posts</h2>
-    <% if(posts.length===0){ %>
-        <p>No posts available</p>
-        <%} else{%>
-            <ul>
-                <% posts.forEach(post=> { %>
-                    <li>
-                        <strong>
-                            <%=post.title %>
-                        </strong>
-                        -<%=post.content %>
-                    </li>
-                    <% }) %>
-            </ul>
-            <% } %>
-</body>
-
-</html>
+        <% } %>

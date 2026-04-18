@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Sora', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* ── Layout ── */
+.body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Header ── */
+.body header {
+    width: 100%;
+    background: rgba(15, 25, 50, 0.85);
+    backdrop-filter: blur(12px);
+    color: white;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(54, 176, 235, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.body header .logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 0 14px rgba(54, 176, 235, 0.5);
+}
+
+.body header .logo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.75);
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #36b0eb;
+}
+
+/* ── Main ── */
+.body main {
+    flex-grow: 1;
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #030c1d;
+    background-image:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(54, 176, 235, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(54, 176, 235, 0.06) 0%, transparent 60%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle grid background */
+.body main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(54, 176, 235, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(54, 176, 235, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+}
+
+/* ── Shared Card Styles (Login + Register) ── */
+.body main .login-container,
+.body main .register-container {
+    position: relative;
+    width: min(380px, 90%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 44px 36px 36px;
+    border-radius: 24px;
+    background: rgba(8, 20, 45, 0.85);
+    border: 1px solid rgba(54, 176, 235, 0.3);
+    box-shadow:
+        0 0 0 1px rgba(54, 176, 235, 0.08),
+        0 8px 40px rgba(3, 12, 29, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 0 80px rgba(54, 176, 235, 0.08);
+    backdrop-filter: blur(16px);
+    animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Shared Heading ── */
+.body main .login-container h1,
+.body main .register-container h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+/* ── Shared Form Layout ── */
+.body main .login-container form,
+.body main .register-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ── Shared Inputs ── */
+.body main .login-container form input,
+.body main .register-container form input {
+    width: 100%;
+    padding: 13px 18px;
+    font-size: 0.95rem;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    color: #e8f4ff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(54, 176, 235, 0.25);
+    border-radius: 50px;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    caret-color: #36b0eb;
+}
+
+.body main .login-container form input::placeholder,
+.body main .register-container form input::placeholder {
+    color: rgba(180, 210, 235, 0.4);
+    font-weight: 300;
+}
+
+.body main .login-container form input:focus,
+.body main .register-container form input:focus {
+    background: rgba(54, 176, 235, 0.08);
+    border-color: #36b0eb;
+    box-shadow: 0 0 0 3px rgba(54, 176, 235, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Shared Button ── */
+.body main .login-container form button,
+.body main .register-container form button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #36b0eb 0%, #1a8fd1 100%);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+    box-shadow: 0 4px 20px rgba(54, 176, 235, 0.35);
+}
+
+.body main .login-container form button::after,
+.body main .register-container form button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.body main .login-container form button:hover,
+.body main .register-container form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(54, 176, 235, 0.5);
+    filter: brightness(1.08);
+}
+
+.body main .login-container form button:hover::after,
+.body main .register-container form button:hover::after {
+    opacity: 1;
+}
+
+.body main .login-container form button:active,
+.body main .register-container form button:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 12px rgba(54, 176, 235, 0.3);
+}
+
+/* ── Shared Bottom Link ── */
+.body main .login-container>a,
+.body main .register-container>a {
+    display: block;
+    margin-top: 22px;
+    font-size: 0.82rem;
+    color: rgba(54, 176, 235, 0.7);
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+}
+
+.body main .login-container>a:hover,
+.body main .register-container>a:hover {
+    color: #36b0eb;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ── Home Header ── */
+.body main .home-header {
+    color: aquamarine;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* ── Footer ── */
+.body footer {
+    width: 100%;
+    background: rgba(15, 25, 50, 0.9);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(54, 176, 235, 0.12);
+    letter-spacing: 0.02em;
+}
