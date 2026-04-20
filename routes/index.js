@@ -15,8 +15,19 @@ const storage=multer.diskStorage({
 const upload=multer({storage:storage});
 
 router.get('/',(req,res)=>{
-    const posts=db.getPost();
-    res.render('index',{title:'Blogging Platform',posts:posts});
+    let posts=db.getPost();
+    const{search,category}=req.query;
+
+    // filter by category
+    if(category){
+        posts=posts.filter(post=>post.category===category);
+    }
+    // filter by search term
+    if(search){
+        const term=search.toLowerCase();
+        posts=posts.filter(post=>post.title.toLowerCase().includes(term)||(post.content && post.content.toLowerCase().includes(term)));
+    }
+    res.render('index',{title:'Blogging Platform',posts:posts,searchQuery:search||'',categoryFilter:category||''});
 });
 
 router.post('/',upload.single('image'),(req,res)=>{

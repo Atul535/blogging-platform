@@ -31,23 +31,15 @@ app.use(session({
 // Middleware to pass user data to all views
 app.use((req, res, next) => {
     const sessionUser = req.session.user;
-    res.locals.title = 'Blogging Platform';
-
     if (!sessionUser) {
         res.locals.user = null;
-        return next();
-    } 
-    
-    if (typeof sessionUser === 'string') {
-        // old session format (just email) — destroy it
-        return req.session.destroy((err) => {
-            if (err) console.error('Session destroy error:', err);
-            res.locals.user = null;
-            next();
-        });
-    } 
-
-    res.locals.user = sessionUser.name.split(' ')[0]; // first name
+    } else if (typeof sessionUser === 'string') {
+        req.session.destroy();
+        res.locals.user = null;
+    } else {
+        res.locals.user = sessionUser.name.split(' ')[0]; // first name only
+    }
+    res.locals.title = 'Blogging Platform';
     next();
 });
 
