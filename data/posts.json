@@ -1,6 +1,9 @@
 [
-    {
-        "title": "My First Post",
-        "content": "This is exciting!"
-    }
+  {
+    "title": "Spiti Valley",
+    "content": "Spiti is a high-altitude region of the Himalayas, located in the north-eastern part of the northern Indian state of Himachal Pradesh. The name \"Spiti\" means \"The middle land\", i.e. the land between Tibet in China and India.",
+    "category": "Personal",
+    "imageUrl": "/uploads/1776674371194.webp",
+    "id": "1776674371198"
+  }
 ]

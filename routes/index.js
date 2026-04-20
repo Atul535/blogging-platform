@@ -16,13 +16,14 @@ const upload=multer({storage:storage});
 
 router.get('/',(req,res)=>{
     const posts=db.getPost();
-    res.render('index',{title:'Blogging Platform',posts:posts,user:req.session.user});
+    res.render('index',{title:'Blogging Platform',posts:posts});
 });
 
 router.post('/',upload.single('image'),(req,res)=>{
     const newPost={
         title:req.body.title,
         content:req.body.content,
+        category:req.body.category,
         imageUrl:req.file?'/uploads/'+req.file.filename:null
     };
     db.savePost(newPost);

@@ -12,6 +12,7 @@ const getPost=()=>{
 
 const savePost=(post)=>{
     const currentPost=getPost();
+    post.id=Date.now().toString();
     currentPost.push(post);
 
     fs.writeFileSync(dataPath,JSON.stringify(currentPost,null,2));
