@@ -3,10 +3,11 @@ const express = require('express');                  // Express framework
 const session = require('express-session');          // Session middleware
 const FileStore = require('session-file-store')(session); // Store sessions in files
 const expressLayouts = require('express-ejs-layouts');    // Layout support for EJS
-
+const dotenv = require('dotenv');
+dotenv.config();    
 // Create Express app
 const app = express();
-const port = 3000; // Server will run on port 3000
+const port = process.env.PORT || 3000; // Server will run on port 3000
 
 
 // ---------------------- STATIC FILES ----------------------
@@ -47,7 +48,7 @@ app.use(session({
         ttl: 86400,           // Time-to-live (in seconds) → 24 hours
         retries: 0            // Retry attempts if session save fails
     }),
-    secret: 'my_secret_key',  // Secret key used to sign session ID cookies
+    secret: process.env.SESSION_SECRET,  // Secret key used to sign session ID cookies
     resave: false,            // Don't save session if nothing changed
     saveUninitialized: false, // Don't create session until something stored
 
